@@ -1,42 +1,72 @@
 #root {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 1rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.pose-detector-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.video-section {
+  flex: 1;
+  min-width: 400px;
+}
+
+.info-section {
+  flex: 0 0 300px;
+  min-width: 280px;
+}
+
+.status-card {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.alert-card {
+  background-color: #fff3e0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ffb74d;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background-color: #e3f2fd;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #2196f3;
+}
+
+.status-normal {
+  color: #2e7d32;
+}
+
+.status-warning {
+  color: #f57c00;
+}
+
+.status-alert {
+  color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .pose-detector-container {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .info-section {
+    flex: 1;
+    min-width: 100%;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .video-section {
+    min-width: 100%;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
