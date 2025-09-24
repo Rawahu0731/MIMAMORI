@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# MIMAMORI ~命を救う~
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 概要
+MIMAMORIは、リアルタイムで人の姿勢を検知し、肩と足の高さが同じになった場合にアラートを表示するWebアプリです。転倒や倒れ込みなどの危険を素早く検知し、命を守ることを目的としています。
 
-Currently, two official plugins are available:
+## 主な機能
+- Mediapipe PoseLandmarkerによる姿勢検知
+- 肩と足の高さの差分計算
+- 危険検知時のアラート履歴表示（最新5件）
+- リアルタイム映像の表示
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 技術スタック
+- React 19
+- TypeScript
+- Vite
+- Mediapipe Tasks Vision
 
-## React Compiler
+## セットアップ方法
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. リポジトリをクローン
+	```bash
+	git clone https://github.com/Rawahu0731/MIMAMORI.git
+	cd MIMAMORI
+	```
 
-## Expanding the ESLint configuration
+2. 依存パッケージのインストール
+	```bash
+	npm install
+	```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. 開発サーバーの起動
+	```bash
+	npm run dev
+	```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+4. ブラウザで `http://localhost:5173` にアクセス
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ファイル構成
+- `src/App.tsx` : メイン画面・アラート履歴管理
+- `src/components/PoseDetector.tsx` : 姿勢検知コンポーネント
+- `public/` : 公開用静的ファイル
+- `index.html` : エントリーポイント
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ライセンス
+MIT
