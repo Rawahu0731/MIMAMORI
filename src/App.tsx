@@ -5,8 +5,8 @@ import { PoseDetector } from './components/PoseDetector';
 interface PoseData {
   shoulderY: number;
   ankleY: number;
-  heightDiff: number;
-  isSameHeight: boolean;
+  angleDeg?: number;
+  isFallenByAngle?: boolean;
 }
 
 function App() {
@@ -15,12 +15,10 @@ function App() {
 
   const handlePoseDetected = (data: PoseData) => {
     setPoseData(data);
-    
     // アラート履歴を管理
-    if (data.isSameHeight) {
+    if (data.isFallenByAngle) {
       const timestamp = new Date().toLocaleTimeString();
-      const alertMessage = `${timestamp}: 肩と足が同じ高さを検出`;
-      
+      const alertMessage = `${timestamp}: 転倒検知 (角度: ${data.angleDeg?.toFixed(1)}°)`;
       setAlertHistory(prev => {
         const newHistory = [alertMessage, ...prev].slice(0, 5); // 最新5件のみ保持
         return newHistory;
@@ -52,12 +50,12 @@ function App() {
               <h3>現在の測定値</h3>
               <p><strong>肩の高さ:</strong> {poseData.shoulderY.toFixed(3)}</p>
               <p><strong>足首の高さ:</strong> {poseData.ankleY.toFixed(3)}</p>
-              <p><strong>高さの差:</strong> {poseData.heightDiff.toFixed(3)}</p>
+              <p><strong>ベクトル角度:</strong> {poseData.angleDeg?.toFixed(1)}°</p>
               <p style={{ 
-                color: poseData.isSameHeight ? '#d32f2f' : '#2e7d32',
+                color: poseData.isFallenByAngle ? '#d32f2f' : '#2e7d32',
                 fontWeight: 'bold'
               }}>
-                <strong>状態:</strong> {poseData.isSameHeight ? '要注意' : '正常'}
+                <strong>状態:</strong> {poseData.isFallenByAngle ? '転倒検知' : '正常'}
               </p>
             </div>
           )}
