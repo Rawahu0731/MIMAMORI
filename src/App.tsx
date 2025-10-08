@@ -13,7 +13,6 @@ function App() {
   const [poseData, setPoseData] = useState<PoseData | null>(null);
   const [alertHistory, setAlertHistory] = useState<string[]>([]);
   const [userId, setUserId] = useState<string>('');
-  const [lastNotificationTime, setLastNotificationTime] = useState<number | null>(null);
   const [isWaitingForRescue, setIsWaitingForRescue] = useState<boolean>(false);
   
   // useRefを使って即座に参照できるようにする
@@ -46,7 +45,6 @@ function App() {
           isWaitingForRescueRef.current = true;
           lastNotificationTimeRef.current = currentTime;
           setIsWaitingForRescue(true);
-          setLastNotificationTime(currentTime);
           
           fetch('https://mimamoriserver.onrender.com/fall_detected', {
             method: 'POST',
@@ -67,7 +65,6 @@ function App() {
             isWaitingForRescueRef.current = false;
             lastNotificationTimeRef.current = null;
             setIsWaitingForRescue(false);
-            setLastNotificationTime(null);
           });
         } else {
           console.log('30分経過していないため送信スキップ');
@@ -83,7 +80,6 @@ function App() {
     isWaitingForRescueRef.current = false;
     lastNotificationTimeRef.current = null;
     setIsWaitingForRescue(false);
-    setLastNotificationTime(null);
   };
 
   return (
