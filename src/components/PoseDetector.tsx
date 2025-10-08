@@ -11,7 +11,7 @@ interface PoseDetectorProps {
 }
 
 export const PoseDetector: React.FC<PoseDetectorProps> = ({ onPoseDetected }) => {
-  const [showDebugLog, setShowDebugLog] = useState(true);
+  const [showDebugLog, setShowDebugLog] = useState(false);
   // デバッグログ管理
   const [debugLogs, setDebugLogs] = useState<string[]>([]);
   const addDebugLog = useCallback((msg: string) => {
