@@ -15,14 +15,32 @@ function App() {
 
   const handlePoseDetected = (data: PoseData) => {
     setPoseData(data);
-    // アラート履歴を管理
     if (data.isFallenByAngle) {
       const timestamp = new Date().toLocaleTimeString();
       const alertMessage = `${timestamp}: 転倒検知 (角度: ${data.angleDeg?.toFixed(1)}°)`;
       setAlertHistory(prev => {
-        const newHistory = [alertMessage, ...prev].slice(0, 5); // 最新5件のみ保持
+        const newHistory = [alertMessage, ...prev].slice(0, 5);
         return newHistory;
       });
+
+      // 転倒検知時にAPIへ通知
+      fetch('https://mimamoriserver.onrender.com/fall_detected', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: 'Uf23ce792b22fc4f6f9799d85e05cb96a'//テスト用ユーザーID
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          // 必要ならレスポンスを処理
+          console.log('LINE通知結果:', data);
+        })
+        .catch(err => {
+          console.error('LINE通知エラー:', err);
+        });
     }
   };
 
@@ -31,19 +49,19 @@ function App() {
       <h1 style={{ color: '#333', textAlign: 'center', marginBottom: '30px' }}>
         MIMAMORI ~命を救う~
       </h1>
-      
+
       <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
         <div style={{ flex: '1', minWidth: '400px' }}>
           <h2>リアルタイム監視</h2>
           <PoseDetector onPoseDetected={handlePoseDetected} />
         </div>
-        
+
         <div style={{ flex: '0 0 300px' }}>
           <h2>詳細情報</h2>
           {poseData && (
-            <div style={{ 
-              backgroundColor: '#f8f9fa', 
-              padding: '15px', 
+            <div style={{
+              backgroundColor: '#f8f9fa',
+              padding: '15px',
               borderRadius: '8px',
               marginBottom: '20px'
             }}>
@@ -51,7 +69,7 @@ function App() {
               <p><strong>肩の高さ:</strong> {poseData.shoulderY.toFixed(3)}</p>
               <p><strong>足首の高さ:</strong> {poseData.ankleY.toFixed(3)}</p>
               <p><strong>ベクトル角度:</strong> {poseData.angleDeg?.toFixed(1)}°</p>
-              <p style={{ 
+              <p style={{
                 color: poseData.isFallenByAngle ? '#d32f2f' : '#2e7d32',
                 fontWeight: 'bold'
               }}>
@@ -59,10 +77,10 @@ function App() {
               </p>
             </div>
           )}
-          
-          <div style={{ 
-            backgroundColor: '#fff3e0', 
-            padding: '15px', 
+
+          <div style={{
+            backgroundColor: '#fff3e0',
+            padding: '15px',
             borderRadius: '8px',
             border: '1px solid #ffb74d'
           }}>
@@ -81,10 +99,10 @@ function App() {
               </p>
             )}
           </div>
-          
-          <div style={{ 
-            marginTop: '20px', 
-            padding: '15px', 
+
+          <div style={{
+            marginTop: '20px',
+            padding: '15px',
             backgroundColor: '#e3f2fd',
             borderRadius: '8px'
           }}>
