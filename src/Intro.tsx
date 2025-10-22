@@ -8,7 +8,7 @@ function Intro() {
                 <ul className="Intro-ul">
                     <li><a href="#how-to-use">使用方法</a></li>
                     <li><a href="#assumed-scene">想定されるシーン</a></li>
-                    <li><a href="#">よくある質問</a></li>
+                    <li><a href="#question">よくある質問</a></li>
                 </ul>
             </nav>
             <h1>MIMAMORI~命を救う~</h1>
@@ -26,13 +26,20 @@ function Intro() {
             <section id="assumed-scene">
             <h3>想定されるシーン</h3>
             <p>
-                家で遊んでるときに子供が転んでしまった時
+                <ol>
+                    <li>家で遊んでるときに子供が転んでしまった時</li>
+                    <li>高齢者の方が家で転倒してしまった時</li>
+                    <li>一人暮らしの方が倒れてしまった時</li>
+                </ol>
+                など、様々なシーンでの利用を想定しています。
 
             </p>
             </section>
+            <section id="question">
             <h3>よくある質問</h3>
             <p>Q:誤検知はありますか？<br></br>
             A:はい、環境や動きによっては誤検知が発生することがあります。</p>
+            </section>
             </div>
             <button onClick={() => navigate('/app')}>アプリ画面へ移動</button>
         </div>

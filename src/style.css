@@ -1,131 +1,180 @@
+:root {
+  --main-size: clamp(2.5rem, 7vw, 5rem);
+  --accent1: #0047ff;   /* 青のメイン */
+  --accent2: #8a2be2;   /* 紫のサブ */
+  --glow-color: rgba(0, 71, 255, 0.35);
+  --text-color: #111;
+  --bg-light: #f8faff;
+}
+
+/* ページ全体 */
+body {
+  background: var(--bg-light);
+  color: var(--text-color);
+  font-family: "Poppins", "Inter", "Noto Sans JP", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* ======= 見出し（既存 h1 デザイン） ======= */
+h1 {
+  font-family: "Bebas Neue", "Poppins", sans-serif;
+  font-size: var(--main-size);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  margin-bottom: 2rem;
+
+  /* グラデーション文字 */
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--accent1), var(--accent2));
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  /* 光と影 */
+  text-shadow:
+    0 2px 2px rgba(0, 0, 0, 0.15),
+    0 6px 10px rgba(0, 0, 0, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.15),
+    0 0 10px var(--glow-color);
+
+  transform: perspective(800px) rotateX(4deg);
+  transition: all 0.35s cubic-bezier(.25,.8,.25,1);
+}
+
+h1::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: #ccc;
+  filter: blur(4px);
+  z-index: -1;
+  opacity: 0.6;
+  transform: translateY(3%);
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,0));
+  transform: skewX(-20deg);
+  mix-blend-mode: overlay;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% { left: -60%; }
+  50% { left: 120%; }
+  100% { left: 120%; }
+}
+
+h1:hover {
+  transform: perspective(900px) rotateX(0deg) scale(1.05);
+  text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.2),
+    0 0 25px rgba(0, 71, 255, 0.4),
+    0 0 50px rgba(138, 43, 226, 0.3);
+}
+
+/* ======= ナビゲーション ======= */
+.Intro-nav {
+  border-bottom: 2px solid var(--accent1);
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.Intro-ul {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
 
 li {
   list-style: none;
 }
+
 a {
   display: block;
   text-decoration: none;
-  color: #000;
-  margin-right: 35px;
+  color: var(--accent1);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
 }
 
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  transition: width 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent2);
+  transform: translateY(-2px);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* ======= 本文エリア ======= */
 .Intro {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(145deg, #ffffff, #eef3ff);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    inset 0 0 25px rgba(0, 71, 255, 0.05);
   text-align: left;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   line-height: 1.8;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.Intro:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    0 0 20px var(--glow-color);
 }
 
 .Intro h2, .Intro h3 {
   color: var(--accent1);
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px rgba(0, 71, 255, 0.2);
 }
 
 .Intro ol {
   margin-left: 1.5rem;
 }
 
-:root {
-      --main-size: clamp(2.5rem, 7vw, 5rem);
-      --accent1: #0047ff;   /* 青のメイン */
-      --accent2: #8a2be2;   /* 紫のサブ */
-      --glow-color: rgba(0, 71, 255, 0.35);
-    }
-
-    body {
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    h1 {
-      font-family: "Bebas Neue", "Poppins", "Inter", sans-serif;
-      font-size: var(--main-size);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      position: relative;
-      display: inline-block;
-      padding: 0.2em 0.5em;
-
-      /* グラデーション文字 */
-      color: transparent;
-      background-image: linear-gradient(90deg, var(--accent1), var(--accent2));
-      background-clip: text;
-      -webkit-background-clip: text;
-
-      /* 光と影 */
-      text-shadow:
-        0 2px 2px rgba(0, 0, 0, 0.15),
-        0 6px 10px rgba(0, 0, 0, 0.2),
-        0 10px 20px rgba(0, 0, 0, 0.15),
-        0 0 10px var(--glow-color);
-
-      transform: perspective(800px) rotateX(4deg);
-      transition: all 0.35s cubic-bezier(.25,.8,.25,1);
-    }
-
-    /* 背景の反射っぽい縁 */
-    h1::before {
-      content: attr(data-text);
-      position: absolute;
-      inset: 0;
-      color: #ccc;
-      filter: blur(4px);
-      z-index: -1;
-      opacity: 0.6;
-      transform: translateY(3%);
-    }
-
-    /* 左から右へ流れる輝き */
-    h1::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -40%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,0));
-      transform: skewX(-20deg);
-      mix-blend-mode: overlay;
-      animation: shine 3s linear infinite;
-    }
-
-    @keyframes shine {
-      0% { left: -60%; }
-      50% { left: 120%; }
-      100% { left: 120%; }
-    }
-
-    /* ホバー時に少し浮く＋発光強調 */
-    h1:hover {
-      transform: perspective(900px) rotateX(0deg) scale(1.05);
-      text-shadow:
-        0 3px 6px rgba(0, 0, 0, 0.2),
-        0 0 25px rgba(0, 71, 255, 0.4),
-        0 0 50px rgba(138, 43, 226, 0.3);
-    }
-
-    /* 動き苦手な人向け */
-    @media (prefers-reduced-motion: reduce) {
-      h1::after { animation: none; }
-      h1, h1:hover { transform: none; transition: none; }
-    }
-
-.Intro-ul {
-    display: flex;
+@media (prefers-reduced-motion: reduce) {
+  h1::after { animation: none; }
+  * { transition: none !important; transform: none !important; }
 }
 
-.Intro-nav {
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
