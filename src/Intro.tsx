@@ -38,7 +38,8 @@ function Intro() {
             <section id="question">
             <h3>よくある質問</h3>
             <p>Q:誤検知はありますか？<br></br>
-            A:はい、環境や動きによっては誤検知が発生することがあります。</p>
+               A:はい、環境や動きによっては誤検知が発生することがあります。
+            </p>
             </section>
             </div>
             <button onClick={() => navigate('/app')}>アプリ画面へ移動</button>
