@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import './App.css'
 import { PoseDetector } from './components/PoseDetector';
+import { useNavigate } from 'react-router-dom';
 
 interface PoseData {
   shoulderY: number;
@@ -16,8 +17,9 @@ function App() {
   const [isWaitingForRescue, setIsWaitingForRescue] = useState<boolean>(false);
   
   // useRefを使って即座に参照できるようにする
-  const isWaitingForRescueRef = useRef<boolean>(false);
-  const lastNotificationTimeRef = useRef<number | null>(null);
+    const isWaitingForRescueRef = useRef<boolean>(false);
+    const lastNotificationTimeRef = useRef<number | null>(null);
+    const navigate = useNavigate();
 
   const handlePoseDetected = (data: PoseData) => {
     setPoseData(data);
@@ -84,7 +86,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ color: '#333', textAlign: 'center', marginBottom: '30px' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
         MIMAMORI ~命を救う~
       </h1>
 
@@ -219,7 +221,8 @@ function App() {
             </ul>
           </div>
         </div>
-      </div>
+        </div>
+      <button onClick={() => navigate('/')}>サイトへ移動</button>
     </div>
   );
 }
