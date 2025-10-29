@@ -86,7 +86,7 @@ function Intro() {
             </section>
             </div>
             <button className='glow-button' onClick={() => navigate('/app')}>アプリ画面へ移動</button>
-            <p>「人を守るAIが、そばにいる。」</p>
+            <p className='logo'>「人を守るAIが、そばにいる。」</p>
         </div>
     );
 }

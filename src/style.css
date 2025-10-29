@@ -292,6 +292,56 @@ button.glow-button:disabled {
   }
 }
 
+:root {
+  --logo-blue: #005eff;       /* メインの青（信頼感） */
+  --logo-cyan: #00c6ff;       /* 明るいアクセント */
+  --logo-size: clamp(2rem, 5vw, 3.5rem);
+}
 
+/* ロゴテキスト */
+p.logo {
+  font-family: "Bebas Neue", "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: var(--logo-size);
+  letter-spacing: 0.02em;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  padding: 0.3em 0.6em;
+
+  /* シンプルでくっきりしたグラデーション文字 */
+  background: linear-gradient(90deg, var(--logo-blue), var(--logo-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* 白背景でも見える、控えめな立体感 */
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.1),
+    0 3px 8px rgba(0,94,255,0.15);
+
+  transition: all 0.3s ease;
+}
+
+/* ホバーで少し光る（うるさくない程度に） */
+p.logo:hover {
+  transform: scale(1.02);
+  text-shadow:
+    0 1px 3px rgba(0,0,0,0.15),
+    0 4px 12px rgba(0,150,255,0.25);
+}
+
+/* 下に細いアクセントライン（動かない＝安定感） */
+p.logo::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: -6%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--logo-blue), var(--logo-cyan));
+  opacity: 0.7;
+}
 
 
