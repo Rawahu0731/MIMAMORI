@@ -68,10 +68,17 @@ h1::after {
   left: -40%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,0));
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0.8),
+    rgba(255,255,255,0)
+  );
   transform: skewX(-20deg);
   mix-blend-mode: overlay;
   animation: shine 3s linear infinite;
+  overflow: hidden; /* ← これで光が外に出ないように */
+  clip-path: inset(0 0 0 0 round 8px); /* ← 安全に内側に収める */
 }
 
 @keyframes shine {
