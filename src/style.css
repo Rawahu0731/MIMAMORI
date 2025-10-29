@@ -178,7 +178,7 @@ a:hover::after {
   * { transition: none !important; transform: none !important; }
 }
 
-button {
+button.glow-button {
   position: relative;
   display: inline-block;
   padding: 1em 2.8em;
@@ -204,7 +204,7 @@ button {
 }
 
 /* ボタン外縁にうごめく光のオーラ */
-button::before {
+button.glow-button::before {
   content: "";
   position: absolute;
   top: -40%;
@@ -219,7 +219,7 @@ button::before {
 }
 
 /* 内側に流れる光線 */
-button::after {
+button.glow-button::after {
   content: "";
   position: absolute;
   top: 0;
@@ -233,13 +233,13 @@ button::after {
 }
 
 /* テキスト前面に */
-button span {
+button.glow-button span {
   position: relative;
   z-index: 2;
 }
 
-/* ホバー時に浮く＋爆光 */
-button:hover {
+/* ホバー時 */
+button.glow-button:hover {
   transform: scale(1.08) translateY(-5px);
   box-shadow:
     0 0 30px rgba(0, 71, 255, 0.8),
@@ -248,8 +248,8 @@ button:hover {
   animation: pulseGlow 1.5s infinite alternate;
 }
 
-/* クリック時にズシッと沈む */
-button:active {
+/* クリック時 */
+button.glow-button:active {
   transform: scale(0.95);
   box-shadow:
     0 0 10px rgba(0, 71, 255, 0.5),
@@ -257,7 +257,7 @@ button:active {
 }
 
 /* 無効化 */
-button:disabled {
+button.glow-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
   animation: none;
@@ -284,6 +284,7 @@ button:disabled {
     filter: brightness(1.4);
   }
 }
+
 
 
 

@@ -17,10 +17,9 @@ function Intro() {
             <section id="how-to-use">
             <h3>使用方法</h3>
             <ol>
-                <li>カメラの前に立ち、全身が映るようにしてください</li>
-                <li>肩と足首の高さを監視します</li>
-                <li>高さの差が0.1以下の場合、警告が表示されます</li>
-                <li>転倒や異常な動きを検出すると警告します</li>
+                <li>このシステムは、あなたの肩と足首の高さをチェックしています。</li>
+                <li>両方の高さの差が0.1以下になると、警告が表示されます。</li>
+                <li>また、転倒や不自然な動きを検出した場合にも警告を出します。</li>
             </ol>
             </section>
             <section id="assumed-scene">
@@ -38,11 +37,17 @@ function Intro() {
             <section id="question">
             <h3>よくある質問</h3>
             <p>Q:誤検知はありますか？<br></br>
-               A:はい、環境や動きによっては誤検知が発生することがあります。
+               A:はい、環境や動きによっては誤検知が発生することがあります。<br></br>
+               <br></br>
+               Q:カメラの位置はどこが良いですか？<br></br>
+               A:監視する人を二方向から映るように二台のカメラを設置することをお勧めします。<br></br>
+               <br></br>
+               Q:アプリは無料ですか？<br></br>
+               A:はい、全ての機能が無料でご利用いただけます。 <br></br>
             </p>
             </section>
             </div>
-            <button onClick={() => navigate('/app')}>アプリ画面へ移動</button>
+            <button className='glow-button' onClick={() => navigate('/app')}>アプリ画面へ移動</button>
         </div>
     );
 }
