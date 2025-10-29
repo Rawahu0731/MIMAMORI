@@ -76,8 +76,8 @@ h1::after {
 
 @keyframes shine {
   0% { left: -60%; }
-  50% { left: 120%; }
-  100% { left: 120%; }
+  50% { left: 48%; }
+  100% { left: 48%; }
 }
 
 h1:hover {
