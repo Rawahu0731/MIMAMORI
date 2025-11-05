@@ -481,4 +481,10 @@ p.logo::after {
   opacity: 0.7;
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
 
