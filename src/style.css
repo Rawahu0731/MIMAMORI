@@ -1,6 +1,3 @@
-/* ==============================
-   グローバル変数
-============================== */
 :root {
   --main-size: clamp(3.5rem, 12vw, 8rem);
   --accent1: #0047ff;   /* 青のメイン */
@@ -8,15 +5,9 @@
   --glow-color: rgba(0, 71, 255, 0.35);
   --text-color: #111;
   --bg-light: #f8faff;
-
-  --logo-blue: #005eff;
-  --logo-cyan: #00c6ff;
-  --logo-size: clamp(2rem, 5vw, 3.5rem);
 }
 
-/* ==============================
-   ダークモード対応
-============================== */
+/* ダークモード対応 */
 @media (prefers-color-scheme: dark) {
   :root {
     --accent1: #4d8fff;
@@ -27,21 +18,7 @@
   }
 }
 
-/* ==============================
-   全体設定
-============================== */
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* 横スクロール防止 */
-  scroll-behavior: smooth;
-}
-
+/* ページ全体 */
 body {
   background: var(--bg-light);
   color: var(--text-color);
@@ -51,13 +28,12 @@ body {
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
+  margin: 0;
   padding: 2rem;
   text-align: center;
 }
 
-/* ==============================
-   見出し h1
-============================== */
+/* ======= 見出し（h1） ======= */
 h1 {
   font-family: "Bebas Neue", "Poppins", sans-serif;
   font-size: calc(var(--main-size) * 0.7);
@@ -69,19 +45,15 @@ h1 {
   padding: 0.2em 0.5em;
   margin-bottom: 2rem;
   white-space: nowrap;
-  overflow: hidden; /* 光エフェクトを内側に閉じ込める */
-
   color: transparent;
   background-image: linear-gradient(90deg, var(--accent1), var(--accent2));
   background-clip: text;
   -webkit-background-clip: text;
-
   text-shadow:
     0 2px 2px rgba(0, 0, 0, 0.15),
     0 6px 10px rgba(0, 0, 0, 0.2),
     0 10px 20px rgba(0, 0, 0, 0.15),
     0 0 10px var(--glow-color);
-
   transform: perspective(800px) rotateX(4deg);
   transition: all 0.35s cubic-bezier(.25,.8,.25,1);
 }
@@ -101,8 +73,8 @@ h1::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -50%;
-  width: 150%;
+  left: -40%;
+  width: 60%;
   height: 100%;
   background: linear-gradient(
     90deg,
@@ -113,12 +85,14 @@ h1::after {
   transform: skewX(-20deg);
   mix-blend-mode: overlay;
   animation: shine 3s linear infinite;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0 round 8px);
 }
 
 @keyframes shine {
   0% { left: -60%; }
-  50% { left: 50%; }
-  100% { left: 50%; }
+  50% { left: 48%; }
+  100% { left: 48%; }
 }
 
 h1:hover {
@@ -129,7 +103,7 @@ h1:hover {
     0 0 50px rgba(138, 43, 226, 0.3);
 }
 
-/* スマホ調整 */
+/* スマホでh1のサイズ調整 */
 @media (max-width: 768px) {
   h1 {
     font-size: clamp(2.5rem, 10vw, 5rem);
@@ -137,9 +111,7 @@ h1:hover {
   }
 }
 
-/* ==============================
-   ナビゲーション
-============================== */
+/* ======= ナビゲーション ======= */
 .Intro-nav {
   border-bottom: 2px solid var(--accent1);
   padding-bottom: 10px;
@@ -147,11 +119,11 @@ h1:hover {
   width: 100%;
   max-width: 900px;
   position: relative;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 /* ハンバーガーボタン */
@@ -183,11 +155,9 @@ h1:hover {
 .hamburger-line.open:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
-
 .hamburger-line.open:nth-child(2) {
   opacity: 0;
 }
-
 .hamburger-line.open:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
@@ -202,12 +172,14 @@ h1:hover {
   transition: all 0.3s ease;
 }
 
-/* スマホメニュー */
+/* スマホ用 */
 @media (max-width: 768px) {
-  .hamburger-button { display: flex; }
-
-  .Intro-nav { padding-top: 40px; }
-
+  .hamburger-button {
+    display: flex;
+  }
+  .Intro-nav {
+    padding-top: 40px;
+  }
   .Intro-ul {
     position: absolute;
     top: 100%;
@@ -218,44 +190,40 @@ h1:hover {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
+    gap: 0;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 8px 8px;
     z-index: 9;
   }
-
   .Intro-ul.menu-open {
     max-height: 500px;
     opacity: 1;
     padding: 20px 0;
   }
-
   .Intro-ul li {
     width: 100%;
     text-align: center;
     padding: 12px 0;
     border-bottom: 1px solid rgba(0, 71, 255, 0.1);
   }
-
-  .Intro-ul li:last-child { border-bottom: none; }
-
-  .Intro-ul a::after { display: none; }
+  .Intro-ul li:last-child {
+    border-bottom: none;
+  }
+  .Intro-ul a::after {
+    display: none;
+  }
 }
-
-/* ダークモード */
 @media (max-width: 768px) and (prefers-color-scheme: dark) {
   .Intro-ul {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   }
-
   .Intro-ul li {
     border-bottom: 1px solid rgba(77, 143, 255, 0.2);
   }
 }
 
-/* ==============================
-   リンクスタイル
-============================== */
+/* ======= 共通 ======= */
 li { list-style: none; }
 
 a {
@@ -267,7 +235,6 @@ a {
   position: relative;
   transition: color 0.3s, transform 0.3s;
 }
-
 a::after {
   content: "";
   position: absolute;
@@ -278,17 +245,15 @@ a::after {
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   transition: width 0.3s ease;
 }
-
 a:hover {
   color: var(--accent2);
   transform: translateY(-2px);
 }
+a:hover::after {
+  width: 100%;
+}
 
-a:hover::after { width: 100%; }
-
-/* ==============================
-   本文エリア
-============================== */
+/* ======= 本文エリア ======= */
 .Intro {
   background: linear-gradient(145deg, #ffffff, #eef3ff);
   padding: 2rem 3rem;
@@ -325,24 +290,12 @@ a:hover::after { width: 100%; }
   margin-bottom: 0.5rem;
   text-shadow: 0 0 8px rgba(0, 71, 255, 0.2);
 }
-
 .Intro ol { margin-left: 1.5rem; }
 
-/* ==============================
-   アニメーションを抑制（アクセシビリティ）
-============================== */
-@media (prefers-reduced-motion: reduce) {
-  h1::after { animation: none; }
-  * { transition: none !important; transform: none !important; }
-}
-
-/* ==============================
-   グロー・ボタン
-============================== */
+/* ======= ボタン ======= */
 button.glow-button {
   position: relative;
-  display: block;
-  margin: 0 auto;
+  display: inline-block;
   padding: 1em 2.8em;
   font-size: 1.2rem;
   font-weight: 800;
@@ -351,6 +304,9 @@ button.glow-button {
   border: none;
   border-radius: 14px;
   cursor: pointer;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
   color: #fff;
   background: linear-gradient(135deg, var(--accent1), var(--accent2));
   box-shadow:
@@ -360,9 +316,7 @@ button.glow-button {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   transition: all 0.25s ease;
   animation: pulseGlow 3s infinite alternate;
-  overflow: hidden;
 }
-
 button.glow-button::before {
   content: "";
   position: absolute;
@@ -376,7 +330,6 @@ button.glow-button::before {
   z-index: 0;
   animation: auraMove 6s linear infinite;
 }
-
 button.glow-button::after {
   content: "";
   position: absolute;
@@ -389,12 +342,10 @@ button.glow-button::after {
   z-index: 1;
   animation: shineMove 3s ease-in-out infinite;
 }
-
 button.glow-button span {
   position: relative;
   z-index: 2;
 }
-
 button.glow-button:hover {
   transform: scale(1.08) translateY(-5px);
   box-shadow:
@@ -403,14 +354,12 @@ button.glow-button:hover {
     0 0 120px rgba(0, 71, 255, 0.4);
   animation: pulseGlow 1.5s infinite alternate;
 }
-
 button.glow-button:active {
   transform: scale(0.95);
   box-shadow:
     0 0 10px rgba(0, 71, 255, 0.5),
     0 0 30px rgba(138, 43, 226, 0.3);
 }
-
 button.glow-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -418,26 +367,27 @@ button.glow-button:disabled {
   box-shadow: none;
 }
 
-/* アニメーション定義 */
+/* アニメーション */
 @keyframes shineMove {
   0% { left: -120%; }
   50% { left: 120%; }
   100% { left: 120%; }
 }
-
 @keyframes auraMove {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
 @keyframes pulseGlow {
   0% { filter: brightness(1); }
   100% { filter: brightness(1.4); }
 }
 
-/* ==============================
-   ロゴテキスト
-============================== */
+/* ===== ロゴ ===== */
+:root {
+  --logo-blue: #005eff;
+  --logo-cyan: #00c6ff;
+  --logo-size: clamp(2rem, 5vw, 3.5rem);
+}
 p.logo {
   font-family: "Bebas Neue", "Poppins", sans-serif;
   font-weight: 800;
@@ -447,26 +397,21 @@ p.logo {
   display: inline-block;
   position: relative;
   padding: 0.3em 0.6em;
-
   background: linear-gradient(90deg, var(--logo-blue), var(--logo-cyan));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-
   text-shadow:
     0 1px 2px rgba(0,0,0,0.1),
     0 3px 8px rgba(0,94,255,0.15);
-
   transition: all 0.3s ease;
 }
-
 p.logo:hover {
   transform: scale(1.02);
   text-shadow:
     0 1px 3px rgba(0,0,0,0.15),
     0 4px 12px rgba(0,150,255,0.25);
 }
-
 p.logo::after {
   content: "";
   position: absolute;
@@ -478,6 +423,40 @@ p.logo::after {
   background: linear-gradient(90deg, var(--logo-blue), var(--logo-cyan));
   opacity: 0.7;
 }
+
+/* ===== ハンバーガーメニューを上の線の上に表示 ===== */
+
+/* ハンバーガーアイコンを画面右上に固定配置 */
+.hamburger-button {
+  position: fixed;  /* ← スクロールしてもついてくる */
+  top: 10px;        /* ← ページ最上部に */
+  right: 15px;      /* ← 右端に少し余白 */
+  z-index: 1000;    /* ← すべての上に表示 */
+  background: rgba(255, 255, 255, 0.6); /* 背景を薄くして見やすく */
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  padding: 6px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+/* ホバーで軽く浮かせる */
+.hamburger-button:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* スマホ時に少し小さめ */
+@media (max-width: 768px) {
+  .hamburger-button {
+    top: 8px;
+    right: 10px;
+    transform: scale(0.9);
+  }
+}
+
+
+
 
 
 
