@@ -1,3 +1,6 @@
+/* ==============================
+   グローバル変数
+============================== */
 :root {
   --main-size: clamp(3.5rem, 12vw, 8rem);
   --accent1: #0047ff;   /* 青のメイン */
@@ -5,9 +8,15 @@
   --glow-color: rgba(0, 71, 255, 0.35);
   --text-color: #111;
   --bg-light: #f8faff;
+
+  --logo-blue: #005eff;
+  --logo-cyan: #00c6ff;
+  --logo-size: clamp(2rem, 5vw, 3.5rem);
 }
 
-/* ダークモード対応 */
+/* ==============================
+   ダークモード対応
+============================== */
 @media (prefers-color-scheme: dark) {
   :root {
     --accent1: #4d8fff;
@@ -18,7 +27,21 @@
   }
 }
 
-/* ページ全体 */
+/* ==============================
+   全体設定
+============================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 横スクロール防止 */
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg-light);
   color: var(--text-color);
@@ -28,12 +51,13 @@ body {
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  margin: 0;
   padding: 2rem;
   text-align: center;
 }
 
-/* ======= 見出し（既存 h1 デザイン） ======= */
+/* ==============================
+   見出し h1
+============================== */
 h1 {
   font-family: "Bebas Neue", "Poppins", sans-serif;
   font-size: calc(var(--main-size) * 0.7);
@@ -45,14 +69,13 @@ h1 {
   padding: 0.2em 0.5em;
   margin-bottom: 2rem;
   white-space: nowrap;
+  overflow: hidden; /* 光エフェクトを内側に閉じ込める */
 
-  /* グラデーション文字 */
   color: transparent;
   background-image: linear-gradient(90deg, var(--accent1), var(--accent2));
   background-clip: text;
   -webkit-background-clip: text;
 
-  /* 光と影 */
   text-shadow:
     0 2px 2px rgba(0, 0, 0, 0.15),
     0 6px 10px rgba(0, 0, 0, 0.2),
@@ -78,8 +101,8 @@ h1::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -40%;
-  width: 60%;
+  left: -50%;
+  width: 150%;
   height: 100%;
   background: linear-gradient(
     90deg,
@@ -90,14 +113,12 @@ h1::after {
   transform: skewX(-20deg);
   mix-blend-mode: overlay;
   animation: shine 3s linear infinite;
-  overflow: hidden; /* ← これで光が外に出ないように */
-  clip-path: inset(0 0 0 0 round 8px); /* ← 安全に内側に収める */
 }
 
 @keyframes shine {
   0% { left: -60%; }
-  50% { left: 48%; }
-  100% { left: 48%; }
+  50% { left: 50%; }
+  100% { left: 50%; }
 }
 
 h1:hover {
@@ -108,7 +129,7 @@ h1:hover {
     0 0 50px rgba(138, 43, 226, 0.3);
 }
 
-/* スマホでh1のサイズをさらに調整 */
+/* スマホ調整 */
 @media (max-width: 768px) {
   h1 {
     font-size: clamp(2.5rem, 10vw, 5rem);
@@ -116,7 +137,9 @@ h1:hover {
   }
 }
 
-/* ======= ナビゲーション ======= */
+/* ==============================
+   ナビゲーション
+============================== */
 .Intro-nav {
   border-bottom: 2px solid var(--accent1);
   padding-bottom: 10px;
@@ -124,16 +147,14 @@ h1:hover {
   width: 100%;
   max-width: 900px;
   position: relative;
-
-  /* ★ 追加：中央寄せ */
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-/* ハンバーガーボタン（デフォルトは非表示） */
+/* ハンバーガーボタン */
 .hamburger-button {
   display: none;
   flex-direction: column;
@@ -159,7 +180,6 @@ h1:hover {
   transform-origin: center;
 }
 
-/* ハンバーガーメニューが開いているとき */
 .hamburger-line.open:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -182,15 +202,11 @@ h1:hover {
   transition: all 0.3s ease;
 }
 
-/* スマホ表示（768px以下）でハンバーガーメニュー化 */
+/* スマホメニュー */
 @media (max-width: 768px) {
-  .hamburger-button {
-    display: flex;
-  }
+  .hamburger-button { display: flex; }
 
-  .Intro-nav {
-    padding-top: 40px;
-  }
+  .Intro-nav { padding-top: 40px; }
 
   .Intro-ul {
     position: absolute;
@@ -202,7 +218,6 @@ h1:hover {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    gap: 0;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 8px 8px;
@@ -222,15 +237,12 @@ h1:hover {
     border-bottom: 1px solid rgba(0, 71, 255, 0.1);
   }
 
-  .Intro-ul li:last-child {
-    border-bottom: none;
-  }
+  .Intro-ul li:last-child { border-bottom: none; }
 
-  .Intro-ul a::after {
-    display: none;
-  }
+  .Intro-ul a::after { display: none; }
 }
 
+/* ダークモード */
 @media (max-width: 768px) and (prefers-color-scheme: dark) {
   .Intro-ul {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -241,9 +253,10 @@ h1:hover {
   }
 }
 
-li {
-  list-style: none;
-}
+/* ==============================
+   リンクスタイル
+============================== */
+li { list-style: none; }
 
 a {
   display: block;
@@ -271,11 +284,11 @@ a:hover {
   transform: translateY(-2px);
 }
 
-a:hover::after {
-  width: 100%;
-}
+a:hover::after { width: 100%; }
 
-/* ======= 本文エリア ======= */
+/* ==============================
+   本文エリア
+============================== */
 .Intro {
   background: linear-gradient(145deg, #ffffff, #eef3ff);
   padding: 2rem 3rem;
@@ -313,18 +326,23 @@ a:hover::after {
   text-shadow: 0 0 8px rgba(0, 71, 255, 0.2);
 }
 
-.Intro ol {
-  margin-left: 1.5rem;
-}
+.Intro ol { margin-left: 1.5rem; }
 
+/* ==============================
+   アニメーションを抑制（アクセシビリティ）
+============================== */
 @media (prefers-reduced-motion: reduce) {
   h1::after { animation: none; }
   * { transition: none !important; transform: none !important; }
 }
 
+/* ==============================
+   グロー・ボタン
+============================== */
 button.glow-button {
   position: relative;
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
   padding: 1em 2.8em;
   font-size: 1.2rem;
   font-weight: 800;
@@ -333,9 +351,6 @@ button.glow-button {
   border: none;
   border-radius: 14px;
   cursor: pointer;
-  overflow: hidden;
-  display: block;
-  margin: 0 auto; /* ← 横方向の中央寄せ */
   color: #fff;
   background: linear-gradient(135deg, var(--accent1), var(--accent2));
   box-shadow:
@@ -345,9 +360,9 @@ button.glow-button {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   transition: all 0.25s ease;
   animation: pulseGlow 3s infinite alternate;
+  overflow: hidden;
 }
 
-/* ボタン外縁にうごめく光のオーラ */
 button.glow-button::before {
   content: "";
   position: absolute;
@@ -362,7 +377,6 @@ button.glow-button::before {
   animation: auraMove 6s linear infinite;
 }
 
-/* 内側に流れる光線 */
 button.glow-button::after {
   content: "";
   position: absolute;
@@ -376,13 +390,11 @@ button.glow-button::after {
   animation: shineMove 3s ease-in-out infinite;
 }
 
-/* テキスト前面に */
 button.glow-button span {
   position: relative;
   z-index: 2;
 }
 
-/* ホバー時 */
 button.glow-button:hover {
   transform: scale(1.08) translateY(-5px);
   box-shadow:
@@ -392,7 +404,6 @@ button.glow-button:hover {
   animation: pulseGlow 1.5s infinite alternate;
 }
 
-/* クリック時 */
 button.glow-button:active {
   transform: scale(0.95);
   box-shadow:
@@ -400,7 +411,6 @@ button.glow-button:active {
     0 0 30px rgba(138, 43, 226, 0.3);
 }
 
-/* 無効化 */
 button.glow-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -408,7 +418,7 @@ button.glow-button:disabled {
   box-shadow: none;
 }
 
-/* ===== アニメーション ===== */
+/* アニメーション定義 */
 @keyframes shineMove {
   0% { left: -120%; }
   50% { left: 120%; }
@@ -421,21 +431,13 @@ button.glow-button:disabled {
 }
 
 @keyframes pulseGlow {
-  0% {
-    filter: brightness(1);
-  }
-  100% {
-    filter: brightness(1.4);
-  }
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.4); }
 }
 
-:root {
-  --logo-blue: #005eff;       /* メインの青（信頼感） */
-  --logo-cyan: #00c6ff;       /* 明るいアクセント */
-  --logo-size: clamp(2rem, 5vw, 3.5rem);
-}
-
-/* ロゴテキスト */
+/* ==============================
+   ロゴテキスト
+============================== */
 p.logo {
   font-family: "Bebas Neue", "Poppins", sans-serif;
   font-weight: 800;
@@ -446,13 +448,11 @@ p.logo {
   position: relative;
   padding: 0.3em 0.6em;
 
-  /* シンプルでくっきりしたグラデーション文字 */
   background: linear-gradient(90deg, var(--logo-blue), var(--logo-cyan));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 
-  /* 白背景でも見える、控えめな立体感 */
   text-shadow:
     0 1px 2px rgba(0,0,0,0.1),
     0 3px 8px rgba(0,94,255,0.15);
@@ -460,7 +460,6 @@ p.logo {
   transition: all 0.3s ease;
 }
 
-/* ホバーで少し光る（うるさくない程度に） */
 p.logo:hover {
   transform: scale(1.02);
   text-shadow:
@@ -468,7 +467,6 @@ p.logo:hover {
     0 4px 12px rgba(0,150,255,0.25);
 }
 
-/* 下に細いアクセントライン（動かない＝安定感） */
 p.logo::after {
   content: "";
   position: absolute;
@@ -481,10 +479,6 @@ p.logo::after {
   opacity: 0.7;
 }
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-}
 
 
 
