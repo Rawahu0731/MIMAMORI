@@ -4,6 +4,117 @@
   padding: 1rem;
 }
 
+/* アプリ全体のコンテナ */
+.app-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* アプリのタイトル */
+.app-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ユーザーID設定カード */
+.user-id-card {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto 30px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .user-id-card {
+    background-color: #2a2a2a;
+  }
+}
+
+.user-id-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  .user-id-input {
+    background-color: #1a1a1a;
+    color: #e4e4e7;
+    border-color: #444;
+  }
+}
+
+.user-id-display {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .user-id-display {
+    color: #aaa;
+  }
+}
+
+/* 救助待機カード */
+.rescue-alert-card {
+  max-width: 400px;
+  margin: 0 auto 30px;
+  padding: 15px;
+  background-color: #ffebee;
+  border-radius: 8px;
+  border: 2px solid #d32f2f;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rescue-alert-card {
+    background-color: #3d1a1a;
+    border-color: #f44336;
+  }
+}
+
+.rescue-complete-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #2e7d32;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rescue-complete-button:hover {
+  background-color: #1b5e20;
+}
+
+/* ナビゲーションボタン */
+.nav-button {
+  display: block;
+  margin: 30px auto 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #0047ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #0037cc;
+}
+
 .pose-detector-container {
   display: flex;
   gap: 20px;
@@ -29,6 +140,13 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+@media (prefers-color-scheme: dark) {
+  .status-card {
+    background-color: #2a2a2a;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+}
+
 .alert-card {
   background-color: #fff3e0;
   padding: 15px;
@@ -37,11 +155,25 @@
   margin-bottom: 20px;
 }
 
+@media (prefers-color-scheme: dark) {
+  .alert-card {
+    background-color: #3d2a1a;
+    border-color: #d4860e;
+  }
+}
+
 .info-card {
   background-color: #e3f2fd;
   padding: 15px;
   border-radius: 8px;
   border: 1px solid #2196f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .info-card {
+    background-color: #1a2a3d;
+    border-color: #4d8fff;
+  }
 }
 
 .status-normal {
@@ -68,5 +200,38 @@
   
   .video-section {
     min-width: 100%;
+  }
+
+  .app-container {
+    padding: 10px;
+  }
+
+  .user-id-card {
+    max-width: 100%;
+    margin: 0 0 20px 0;
+  }
+
+  .rescue-alert-card {
+    max-width: 100%;
+    margin: 0 0 20px 0;
+  }
+}
+
+/* 小さいスマホ向け */
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.5rem;
+  }
+
+  .status-card h3,
+  .alert-card h3,
+  .info-card h3,
+  .user-id-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .video-section h2,
+  .info-section h2 {
+    font-size: 1.3rem;
   }
 }

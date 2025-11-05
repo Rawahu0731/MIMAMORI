@@ -85,51 +85,29 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
+    <div className="app-container">
+      <h1 className="app-title">
         MIMAMORI ~命を救う~
       </h1>
 
-      <div style={{
-        marginBottom: '20px',
-        padding: '15px',
-        backgroundColor: '#f5f5f5',
-        borderRadius: '8px',
-        maxWidth: '400px',
-        margin: '0 auto 30px'
-      }}>
+      <div className="user-id-card">
         <h3 style={{ marginTop: 0 }}>ユーザーID設定</h3>
         <input
           type="text"
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
           placeholder="LINE ユーザーIDを入力"
-          style={{
-            width: '100%',
-            padding: '10px',
-            fontSize: '16px',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-            boxSizing: 'border-box'
-          }}
+          className="user-id-input"
         />
         {userId && (
-          <p style={{ marginBottom: 0, marginTop: '10px', fontSize: '14px', color: '#666' }}>
+          <p className="user-id-display">
             設定中のID: <strong>{userId}</strong>
           </p>
         )}
       </div>
 
       {isWaitingForRescue && (
-        <div style={{
-          maxWidth: '400px',
-          margin: '0 auto 30px',
-          padding: '15px',
-          backgroundColor: '#ffebee',
-          borderRadius: '8px',
-          border: '2px solid #d32f2f',
-          textAlign: 'center'
-        }}>
+        <div className="rescue-alert-card">
           <h3 style={{ marginTop: 0, color: '#d32f2f' }}>⚠️ 救助待機中</h3>
           <p style={{ marginBottom: '15px', fontSize: '14px' }}>
             転倒を検知し、通知を送信しました。<br />
@@ -137,59 +115,34 @@ function App() {
           </p>
           <button
             onClick={handleRescueComplete}
-            style={{
-              padding: '12px 24px',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              color: 'white',
-              backgroundColor: '#2e7d32',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              transition: 'background-color 0.3s'
-            }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1b5e20'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2e7d32'}
+            className="rescue-complete-button"
           >
             救った
           </button>
         </div>
       )}
 
-      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-        <div style={{ flex: '1', minWidth: '400px' }}>
+      <div className="pose-detector-container">
+        <div className="video-section">
           <h2>リアルタイム監視</h2>
           <PoseDetector onPoseDetected={handlePoseDetected} />
         </div>
 
-        <div style={{ flex: '0 0 300px' }}>
+        <div className="info-section">
           <h2>詳細情報</h2>
           {poseData && (
-            <div style={{
-              backgroundColor: '#f8f9fa',
-              padding: '15px',
-              borderRadius: '8px',
-              marginBottom: '20px'
-            }}>
+            <div className="status-card">
               <h3>現在の測定値</h3>
               <p><strong>肩の高さ:</strong> {poseData.shoulderY.toFixed(3)}</p>
               <p><strong>足首の高さ:</strong> {poseData.ankleY.toFixed(3)}</p>
               <p><strong>ベクトル角度:</strong> {poseData.angleDeg?.toFixed(1)}°</p>
-              <p style={{
-                color: poseData.isFallenByAngle ? '#d32f2f' : '#2e7d32',
-                fontWeight: 'bold'
-              }}>
+              <p className={poseData.isFallenByAngle ? 'status-alert' : 'status-normal'}>
                 <strong>状態:</strong> {poseData.isFallenByAngle ? '転倒検知' : '正常'}
               </p>
             </div>
           )}
 
-          <div style={{
-            backgroundColor: '#fff3e0',
-            padding: '15px',
-            borderRadius: '8px',
-            border: '1px solid #ffb74d'
-          }}>
+          <div className="alert-card">
             <h3>アラート履歴</h3>
             {alertHistory.length > 0 ? (
               <ul style={{ margin: 0, paddingLeft: '20px' }}>
@@ -206,12 +159,7 @@ function App() {
             )}
           </div>
 
-          <div style={{
-            marginTop: '20px',
-            padding: '15px',
-            backgroundColor: '#e3f2fd',
-            borderRadius: '8px'
-          }}>
+          <div className="info-card">
             <h3>使用方法</h3>
             <ul style={{ fontSize: '14px', lineHeight: '1.6' }}>
               <li>カメラの前に立ち、全身が映るようにしてください</li>
@@ -222,7 +170,7 @@ function App() {
           </div>
         </div>
         </div>
-      <button onClick={() => navigate('/')}>サイトへ移動</button>
+      <button className="nav-button" onClick={() => navigate('/')}>サイトへ移動</button>
     </div>
   );
 }

@@ -1,18 +1,38 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import "./style.css"
 function Intro() {
     const navigate = useNavigate();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
     return (
         <div>
             <nav className="Intro-nav">
-                <ul className="Intro-ul">
-                    <li><a href="#overview">アプリ概要</a></li>
-                    <li><a href="#how-to-use">使用方法</a></li>
-                    <li><a href="#assumed-scene">想定されるシーン</a></li>
-                    <li><a href="#question">よくある質問</a></li>
-                    <li><a href="#device">対応デバイス・動作環境</a></li>
-                    <li><a href="#privacy">プライバシーについて</a></li>
-                    <li><a href="#Precautions">注意事項</a></li>
+                <button 
+                    className="hamburger-button" 
+                    onClick={toggleMenu}
+                    aria-label="メニュー"
+                >
+                    <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+                    <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+                    <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+                </button>
+                <ul className={`Intro-ul ${isMenuOpen ? 'menu-open' : ''}`}>
+                    <li><a href="#overview" onClick={closeMenu}>アプリ概要</a></li>
+                    <li><a href="#how-to-use" onClick={closeMenu}>使用方法</a></li>
+                    <li><a href="#assumed-scene" onClick={closeMenu}>想定されるシーン</a></li>
+                    <li><a href="#question" onClick={closeMenu}>よくある質問</a></li>
+                    <li><a href="#device" onClick={closeMenu}>対応デバイス・動作環境</a></li>
+                    <li><a href="#privacy" onClick={closeMenu}>プライバシーについて</a></li>
+                    <li><a href="#Precautions" onClick={closeMenu}>注意事項</a></li>
                 </ul>
             </nav>
             <h1>MIMAMORI~命を救う~</h1>
