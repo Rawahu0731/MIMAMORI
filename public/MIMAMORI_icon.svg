@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_1" data-name="レイヤー 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080.84 1080.84">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #f2f2f2;
+        stroke-width: 20px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        fill: #f2f2f2;
+      }
+
+      .cls-2 {
+        fill: #b7d2f9;
+        stroke: #000;
+        stroke-width: .84px;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name=" レイヤー 1">
+    <rect class="cls-2" x=".42" y=".42" width="1080" height="1080"/>
+  </g>
+  <g id="_レイヤー_2" data-name=" レイヤー 2">
+    <path class="cls-1" d="M217.45,789.34v-411.85s-1.42-19.81,16.98-19.81h123.13s9.91-83.5,39.63-83.5h291.55s28.82,17.44,33.97,82.09h124.55s19.81,2.83,15.57,22.64v410.43s0,15.57-19.81,16.98H238.68s-21.23,4.25-21.23-16.98Z"/>
+    <rect class="cls-1" x="243.1" y="289.43" width="91.13" height="49.07"/>
+    <circle class="cls-3" cx="782.64" cy="435.89" r="35.53"/>
+    <circle class="cls-3" cx="540.42" cy="579.62" r="164.33"/>
+    <circle cx="540.42" cy="579.62" r="112.24"/>
+    <ellipse class="cls-3" cx="540.42" cy="583.98" rx="112.24" ry="48.34"/>
+    <circle cx="540.42" cy="583.98" r="44.55"/>
+  </g>
+</svg>
